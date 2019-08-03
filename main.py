@@ -21,8 +21,6 @@ LabelBase.register(name='trocchi',
 
 Builder.load_file('main.kv')
 Builder.load_file('shopwindow.kv')
-Builder.load_file('cartwindow.kv')
-
 
 items = (['Anti_Gray', 20, 0],
          ['EnergyBar', 2.5, 0],
@@ -90,8 +88,8 @@ class ShopWindow(Screen):
     def add_item(self):
         for each in items:
             if each[2] > 0:
-                self.cart.ids.item_field.add_widget(Label(text=each[0],
-                                                          pos_hint={'center_x': .5, 'center_y': .5}))
+                self.parent.cart_window.ids.item_field.add_widget(Label(text=each[0],
+                                                                        pos_hint={'center_x': .5, 'center_y': .5}))
 
 
 class CartWindow(Screen):
@@ -121,9 +119,15 @@ class ItemLayout(RelativeLayout):
 
 
 my_screens = MyScreens()
-my_screens.add_widget(RootWindow(name='root_window'))
-my_screens.add_widget(ShopWindow(name='shop_window'))
-my_screens.add_widget(CartWindow(name='cart_window'))
+root_window = RootWindow(name='root_window')
+my_screens.root_window = root_window
+my_screens.add_widget(root_window)
+shop_window = ShopWindow(name='shop_window')
+my_screens.add_widget(shop_window)
+my_screens.shop_window = shop_window
+cart_window = CartWindow(name='cart_window')
+my_screens.add_widget(cart_window)
+my_screens.cart_window = cart_window
 my_screens.current = 'shop_window'
 
 
