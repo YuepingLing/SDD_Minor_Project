@@ -9,7 +9,7 @@
         orientation: 'vertical'
         BoxLayout:
             size_hint_y: None
-            height: 50
+            height: 80
             canvas.before:
                 Color:
                     rgba: (.59, .33, .17, 1)
@@ -25,7 +25,7 @@
                 size_hint_x: .3
         BoxLayout:
             size_hint_y: None
-            height: 20
+            height: 40
             Label:
                 text: 'Item'
                 pos_hint: {'center_x': 0.25, 'center_y': .5}
@@ -36,7 +36,8 @@
         BoxLayout:
             id: item_field
             size_hint_y: None
-            height: 300
+            height: 730
+            orientation: 'vertical'
 
 
 <LuckyDraw>:

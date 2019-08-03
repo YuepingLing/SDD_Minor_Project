@@ -8,6 +8,7 @@ from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.relativelayout import RelativeLayout
+from kivy.uix.boxlayout import BoxLayout
 import hashlib
 import random
 
@@ -90,8 +91,10 @@ class ShopWindow(Screen):
     def add_item():
         for each in items:
             if each[2] > 0:
-                cart_window.ids.item_field.add_widget(Label(text=each[0],
-                                                            pos_hint={'center_x': .5, 'center_y': .5}))
+                box_layout = BoxLayout()
+                box_layout.add_widget(Label(text=each[0] + '   $' + str(each[1])))
+                box_layout.add_widget((Label(text=str(each[2]))))
+                cart_window.ids.item_field.add_widget(box_layout)
 
 
 class CartWindow(Screen):
@@ -169,11 +172,14 @@ class LuckyDraw(Popup):
 
     def __init__(self, **kwargs):
         super(LuckyDraw, self).__init__(**kwargs)
+        self.already = False
 
     def draw(self):
-        lucky_item = random.choice(items)[0]
-        self.ids.lucky_draw.add_widget(Label(text=lucky_item))
-        self.open()
+        if not self.already:
+            lucky_item = random.choice(items)[0]
+            self.ids.lucky_draw.add_widget(Label(text=lucky_item))
+            self.open()
+            self.already = True
 
 
 # Build the App
