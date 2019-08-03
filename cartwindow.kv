@@ -6,10 +6,10 @@
             size: self.size
             pos: self.pos
     BoxLayout:
-        id: item_field
         orientation: 'vertical'
         BoxLayout:
-            size_hint_y: .1
+            size_hint_y: None
+            height: 50
             canvas.before:
                 Color:
                     rgba: (.59, .33, .17, 1)
@@ -24,7 +24,8 @@
                 text: 'Pay'
                 size_hint_x: .3
         BoxLayout:
-            size_hint_y: .1
+            size_hint_y: None
+            height: 20
             Label:
                 text: 'Item'
                 pos_hint: {'center_x': 0.25, 'center_y': .5}
@@ -32,8 +33,12 @@
             Label:
                 text: 'Amount'
                 pos_hint: {'center_x': .75, 'center_y': .5}
-        GridLayout:
-            size_hint_y: .8
+        BoxLayout:
+            id: item_field
+            size_hint_y: None
+            height: 300
+
+
 <LuckyDraw>:
     size_hint: .5, .5
     title: 'LuckyDraw'
