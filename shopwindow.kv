@@ -1,0 +1,112 @@
+<ItemLayout>:
+    name: ''
+    price: ''
+    padding: 15
+    spacing: 15
+    Image:
+        source: 'Images/' + root.name + '.png'
+        size_hint: .5, .5
+        pos_hint: {'center_x':.5, 'top': 1}
+    Button:
+        text: '-1'
+        size_hint: .15, .15
+        pos_hint: {'x': .1, 'y': .2}
+        on_press: root.minus_one()
+    TextInput:
+        id: amount
+        text: '0'
+        multiline: False
+        size_hint: .15, .15
+        pos_hint: {'center_x': .5, 'y': .2}
+    Label:
+        text: root.name + '  $' + root.price
+        size_hint: .4, .4
+        pos_hint: {'x': .3, 'y': .2}
+        font_size: 20
+    Button:
+        text: '+1'
+        size_hint: .15, .15
+        pos_hint: {'right': .9, 'y': .2}
+        on_press: root.plus_one()
+
+<ShopWindow>:
+    cart: cart_window
+    canvas.before:
+        Color:
+            rgba: (.92, .61, .14, 1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: .1
+            spacing: 10
+            padding: 10
+            canvas.before:
+                Color:
+                    rgba: (.59, .33, .17, 1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                text: 'Energy Max'
+                font_name: 'trocchi'
+                size_hint_x: 0.6
+            Button:
+                text: 'Cart'
+                size_hint_x: .2
+                on_press:
+                    root.add_item()
+                    root.manager.current = 'cart_window'
+            Button:
+                text: 'LuckyDraw'
+                size_hint_x: .2
+                on_press: root.lucky_draw()
+        GridLayout:
+            rows: 3
+            cols: 4
+            ItemLayout:
+                name: 'EnergyBar'
+                price: '2.5'
+            ItemLayout:
+                name: 'ProteinShake'
+                price: '20'
+            ItemLayout:
+                name: 'WeightlossShake'
+                price: '20'
+            ItemLayout:
+                name: 'Anti-Gray'
+                price: '20'
+            ItemLayout:
+                name: 'EnergyDrink'
+                price: '5'
+            ItemLayout:
+                name: 'Monster'
+                price: '5'
+            ItemLayout:
+                name: 'Nutrients'
+                price: '15'
+            ItemLayout:
+                name: 'WheyEnergy'
+                price: '20'
+            ItemLayout:
+                name: 'FuelBar'
+                price: '2'
+            ItemLayout:
+                name: 'PureProtein'
+                price: '20'
+            RelativeLayout:
+            RelativeLayout:
+                padding:15
+                spacing:15
+                Button:
+                    text: 'Pay'
+                    size_hint: .7,.3
+                    pos_hint: {'x': .3, 'y': .3}
+                    on_press: root.manager.current = 'cart_window'
+                Button:
+                    text: 'Log Out'
+                    size_hint: .7,.3
+                    pos_hint: {'x': .3, 'y': 0}
+                    on_press: root.logout()

@@ -1,0 +1,90 @@
+# Define Custom Button
+<MyButton@Button>:
+    font_name: 'trocchi'
+    color: (1, .87, .35, 1)
+    underline: True
+    background_color: (0, 0, 0, 0)
+
+<CustomPopup>:
+    size_hint: .5, .5
+    auto_dismiss: False
+    title: root.get_title()
+    BoxLayout:
+        padding: 10
+        spacing: 10
+        orientation: 'vertical'
+        TextInput:
+            id: login
+            hint_text: 'Username'
+            multiline: False
+            write_tab: False
+            focus: True
+            on_text_validate: pwd.focus = True
+        TextInput:
+            id: pwd
+            hint_text: 'Password'
+            password: True
+            write_tab: False
+            multiline: False
+            on_text_validate: root.verify()
+        Button:
+            text: root.get_button_name()
+            font_size: 22
+            on_press: root.verify()
+        Button:
+            text: 'Back'
+            font_size: 22
+            on_press: root.dismiss()
+
+<RootWindow>:
+    id: root_window
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        canvas.before:
+            Color:
+                rgba: (.92, .61, .14, 1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+            Color:
+                rgba: (.59, .33, .17, 1)
+            Ellipse:
+                pos: self.x - self.width * 0.05, self.y - self.height * 0.05
+                size: self.width * 1.1, self.height * 1.1
+            Color:
+                rgba: (1, 1, 1, 1)
+            Rectangle:
+                pos: self.width * 0.2 ,self.height * 0.4
+                size: self.width * 0.6, self.height * 0.55
+                source: 'Images/EnergyMax.png'
+
+        BoxLayout:
+            spacing: 20
+            padding: 20
+            orientation: 'vertical'
+            BoxLayout:
+            BoxLayout:
+                spacing: 40
+                orientation: 'vertical'
+                Label:
+                RelativeLayout:
+                    Label:
+                        size_hint: .8, .15
+                        pos_hint: {'center_x': .5, 'center_y': .95}
+                        font_size: 24
+                        text: 'Free your energy. Be your best. Take it on.'
+                        font_name: 'glacial'
+                RelativeLayout:
+                    MyButton:
+                        text: 'Sign In'
+                        font_size: 32
+                        size_hint: .3 , .3
+                        pos_hint: {'center_x': .5, 'center_y': .99}
+                        on_press: root.open_popup1()
+                    MyButton:
+                        text: "Don't have an account? Sign up"
+                        font_size: 24
+                        size_hint: .65 , .3
+                        pos_hint: {'center_x': .5, 'center_y': .4}
+                        on_press: root.open_popup2()
